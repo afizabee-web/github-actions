@@ -1,0 +1,26 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Ansible
+*.retry
+ansible_venv/
+*.pem
+*.key
+*.pub
+
+# Azure / CLI
+.azure/
+.terraform.d/
+
+# OS / Editor
+.vscode/
+.vscode-server/
+.cache/
+*.log
+
+# Security
+.ssh/
+
