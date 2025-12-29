@@ -55,8 +55,8 @@ jobs:
         uses: azure/docker-login@v1
         with:
           login-server: ${{ needs.terraform.outputs.acr_login_server }}
-          username: ${{ needs.terraform.outputs.acr_username }}
-          password: ${{ needs.terraform.outputs.acr_password }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build & Push Image
         run: |
