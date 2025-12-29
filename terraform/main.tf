@@ -16,7 +16,7 @@ provider "azurerm" {
 # ================================
 resource "azurerm_resource_group" "rg" {
   name     = "AKS-RG-New1"   # 👈 existing RG name
-  location = "East US"
+  location = "Central India"
 
   lifecycle {
     prevent_destroy = true
