@@ -15,7 +15,7 @@ provider "azurerm" {
 # EXISTING RESOURCE GROUP
 # ================================
 resource "azurerm_resource_group" "rg" {
-  name     = "AKS-RG-New11"   # 👈 existing RG name
+  name     = "AKS-RG-New1"   # 👈 existing RG name
   location = "East US"
 
   lifecycle {
@@ -50,7 +50,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "system"
     node_count = 1
-    vm_size    = "Standard_DS2_v2"
+    vm_size    = "Standard_DS2_v3"
   }
 
   identity {
