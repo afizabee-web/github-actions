@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "AKS-RG-New"
+  name     = "AKS-RG-New1"
   location = "Central India"
 }
 
