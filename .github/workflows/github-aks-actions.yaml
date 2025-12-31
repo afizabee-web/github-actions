@@ -1,0 +1,49 @@
+name: Build & Deploy to AKS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Azure login using Service Principal
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Login to ACR using Azure identity (NO password)
+      - name: Login to ACR
+        run: az acr login --name acr1123
+
+      # Build Docker image
+      - name: Build image
+        run: |
+          docker build -t acr1123-dme9fveuabfagfha.azurecr.io/html-app:latest app
+
+      # Push Docker image
+      - name: Push image
+        run: |
+          docker push acr1123-dme9fveuabfagfha.azurecr.io/html-app:latest
+
+      # Set AKS context
+      - name: Set AKS context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: AKS-RG
+          cluster-name: aks-new
+
+      # Deploy to AKS
+      - name: Deploy app
+        run: |
+          kubectl apply -f k8s/
+
