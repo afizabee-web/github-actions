@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Fresh AKS Project</title>
+  <meta charset="UTF-8" />
+  <title>AKS CI/CD Demo</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 80px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0078d4;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
+    ul {
+      color: #555;
+    }
+    .badge {
+      display: inline-block;
+      background: #e6f2fb;
+      color: #0078d4;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin: 5px 5px 0 0;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
 </head>
-<body style="text-align:center;margin-top:100px;">
-  <h1>🚀 Hello from AKS</h1>
-  <p>Deployed using GitHub Actions</p>
+<body>
+
+  <div class="container">
+    <h1>CI CD Deployment on Azure AKS</h1>
+    <p>
+      This application is deployed on Azure Kubernetes Service using a GitHub Actions
+      CI CD pipeline. The deployment is fully automated from code commit to production.
+    </p>
+
+    <h2>Project Overview</h2>
+    <p>
+      I built a simple HTML application, containerized it using Docker, pushed the image
+      to Azure Container Registry, and deployed it to AKS using Kubernetes manifests.
+      Every code change triggers an automated build and deployment through GitHub Actions.
+    </p>
+
+    <h2>Technology Stack</h2>
+    <div>
+      <span class="badge">Azure Kubernetes Service</span>
+      <span class="badge">Azure Container Registry</span>
+      <span class="badge">GitHub Actions</span>
+      <span class="badge">Docker</span>
+      <span class="badge">Kubernetes</span>
+      <span class="badge">CI CD</span>
+    </div>
+
+    <h2>Key Learnings</h2>
+    <ul>
+      <li>End-to-end CI CD pipeline using GitHub Actions</li>
+      <li>Secure image push and pull between ACR and AKS</li>
+      <li>Kubernetes Deployments and Services</li>
+      <li>Basic Azure networking and LoadBalancer concepts</li>
+    </ul>
+
+    <footer>
+      Deployed as part of a hands-on learning project by a Junior Azure Engineer
+    </footer>
+  </div>
+
 </body>
 </html>
+
