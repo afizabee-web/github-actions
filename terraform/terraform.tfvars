@@ -3,3 +3,4 @@ resource_group_name  = "AKS-RG"
 acr_name             = "acr1123"
 aks_name             = "tf-cluster"
 node_count           = 2
+node_vm_size         = "Standard_D4ds_v5"
