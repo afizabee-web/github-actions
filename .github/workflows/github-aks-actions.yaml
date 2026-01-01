@@ -11,12 +11,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+ 
 
       # Azure login using Service Principal
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Terraform to build AKS cluster
+        run: terraform apply -auto-approve
+
       # Login to ACR using Azure identity (NO password)
       - name: Login to ACR
         run: az acr login --name acr1123
@@ -36,7 +40,7 @@ jobs:
         uses: azure/aks-set-context@v3
         with:
           resource-group: AKS-RG
-          cluster-name: aks-new
+          cluster-name: tf-cluster
 
       # Deploy to AKS
       - name: Deploy app
