@@ -11,6 +11,8 @@ terraform {
 
 provider "azurerm" {
   features {}
+
+  subscription_id = var.subscription_id
 }
 
 # ---------------------------
@@ -29,7 +31,7 @@ data "azurerm_container_registry" "acr" {
 }
 
 # ---------------------------
-# AKS CLUSTER
+# AKS CLUSTER (THIS MUST CREATE)
 # ---------------------------
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.aks_name
@@ -38,7 +40,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = var.aks_name
 
   default_node_pool {
-    name       = "nodepool1"
+    name       = "system"
     node_count = var.node_count
     vm_size    = var.node_vm_size
   }
@@ -54,7 +56,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 
 # ---------------------------
-# ALLOW AKS TO PULL FROM ACR
+# ACR PULL ROLE (AFTER AKS)
 # ---------------------------
 resource "azurerm_role_assignment" "aks_acr_pull" {
   depends_on = [
@@ -65,5 +67,6 @@ resource "azurerm_role_assignment" "aks_acr_pull" {
   role_definition_name = "AcrPull"
   principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
 }
+
 
 
